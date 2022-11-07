@@ -10,7 +10,6 @@ import { RiLogoutBoxRFill, RiUser3Fill } from 'react-icons/ri';
 
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks';
 import { authActions } from '../../redux/features/auth/slice';
-
 import { Container, FixedHeader, TopBar, MainBar } from './styled';
 
 export default function Header() {
