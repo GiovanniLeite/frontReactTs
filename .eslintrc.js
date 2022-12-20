@@ -10,8 +10,17 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:storybook/recommended',
   ],
-  overrides: [],
+  overrides: [
+    {
+      files: ['stories.js'],
+      rules: {
+        'react/jsx-props-no-spreading': 'off',
+        'react/function-component-definition': 'off',
+      },
+    },
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -29,7 +38,11 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'no-unused-vars': [
       'warn',
-      { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
+      {
+        vars: 'all',
+        args: 'after-used',
+        ignoreRestSiblings: false,
+      },
     ],
   },
   settings: {

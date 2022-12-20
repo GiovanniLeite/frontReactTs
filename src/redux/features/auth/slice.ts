@@ -38,41 +38,44 @@ const initialState: AuthState = {
   isLoading: false,
 };
 
+// to be used for slice or mockStore
+export const reducersObj = {
+  loginRequest(state, action: PayloadAction<LoginPayload>) {
+    state.isLoading = true;
+  },
+  loginSuccess(state, action: PayloadAction<LoginSuccessPayload>) {
+    state.isLoggedIn = true;
+    state.token = action.payload.token;
+    state.user = action.payload.user;
+    state.isLoading = false;
+  },
+  loginFailure(state) {
+    delete axios.defaults.headers.Authorization;
+    state.isLoggedIn = false;
+    state.token = '';
+    state.user = undefined;
+    state.isLoading = false;
+  },
+
+  registerRequest(state, action: PayloadAction<RegisterPayload>) {
+    state.isLoading = true;
+  },
+  registerCreatedSuccess(state) {
+    state.isLoading = false;
+  },
+  registerUpdatedSuccess(state, action: PayloadAction<User>) {
+    state.user = action.payload;
+    state.isLoading = false;
+  },
+  registerFailure(state) {
+    state.isLoading = false;
+  },
+};
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    loginRequest(state, action: PayloadAction<LoginPayload>) {
-      state.isLoading = true;
-    },
-    loginSuccess(state, action: PayloadAction<LoginSuccessPayload>) {
-      state.isLoggedIn = true;
-      state.token = action.payload.token;
-      state.user = action.payload.user;
-      state.isLoading = false;
-    },
-    loginFailure(state) {
-      delete axios.defaults.headers.Authorization;
-      state.isLoggedIn = false;
-      state.token = '';
-      state.user = undefined;
-      state.isLoading = false;
-    },
-
-    registerRequest(state, action: PayloadAction<RegisterPayload>) {
-      state.isLoading = true;
-    },
-    registerCreatedSuccess(state) {
-      state.isLoading = false;
-    },
-    registerUpdatedSuccess(state, action: PayloadAction<User>) {
-      state.user = action.payload;
-      state.isLoading = false;
-    },
-    registerFailure(state) {
-      state.isLoading = false;
-    },
-  },
+  reducers: reducersObj,
 });
 
 // Actions
