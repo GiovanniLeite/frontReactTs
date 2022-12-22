@@ -8,4 +8,6 @@ module.exports = {
   testPathIgnorePatterns: ['/node_modules/', '/.next/', '/out/', '/public/'],
 
   setupFilesAfterEnv: ['<rootDir>/.jest/jest-setup.ts'],
+
+  transformIgnorePatterns: ['node_modules/(?!axios)/'],
 };

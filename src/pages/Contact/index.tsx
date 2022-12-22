@@ -52,6 +52,7 @@ export default function Contact() {
 
         setContactData({
           ...contactData,
+          id: data.id,
           name: data.name,
           cell_number: data.cell_number,
           phone_number: data.phone_number,
@@ -104,7 +105,7 @@ export default function Contact() {
 
     setIsLoading(true);
     try {
-      if (id) {
+      if (contactData.id) {
         await axios.put(`/contacts/${contactData.id}`, contactData);
         toast.success('Editado com sucesso!');
       } else {
@@ -130,16 +131,6 @@ export default function Contact() {
     <>
       <Helmet>
         <title>Contato | Agenda</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
-          rel="stylesheet"
-        />
       </Helmet>
       <MainContainer>
         <Loading isLoading={isLoading} />
@@ -149,11 +140,16 @@ export default function Contact() {
             {!newC && (
               <Picture>
                 {file ? (
-                  <img src={file} alt="Foto do contato" />
+                  <img
+                    src={file}
+                    alt="Foto do contato"
+                    data-testid="hasImage"
+                  />
                 ) : (
                   <img
                     src={`${apiUrl}/images/no-image.jpg`}
                     alt="Foto do contato"
+                    data-testid="hasNoImage"
                   />
                 )}
 
@@ -166,7 +162,7 @@ export default function Contact() {
                 </Link>
               </Picture>
             )}
-            {id && (
+            {contactData.id && (
               <input
                 type="text"
                 value={contactData.id}
@@ -181,7 +177,7 @@ export default function Contact() {
               name="name"
               value={contactData.name}
               onChange={(e) => handleChange(e)}
-              placeholder="Ex. Giovanni Leite"
+              placeholder="Ex. João Oliveira"
               title="Nome do contato"
             />
             <InputMask

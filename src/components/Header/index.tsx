@@ -125,6 +125,7 @@ export default function Header() {
                       handleLogout(e);
                       handleHideMenu();
                     }}
+                    data-testid="logout"
                   >
                     <div className="link">
                       <RiLogoutBoxRFill /> Sair

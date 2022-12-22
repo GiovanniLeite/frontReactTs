@@ -129,16 +129,6 @@ export default function Login() {
     <>
       <Helmet>
         <title>{'Login - Registro | Agenda'}</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
-          rel="stylesheet"
-        />
       </Helmet>
       <MainContainer>
         <Container>
@@ -153,7 +143,7 @@ export default function Login() {
                   name="email"
                   onChange={(e) => handleChange(e, false)}
                   placeholder="exemplo@outlook.com"
-                  title="Email"
+                  title="Email - Login"
                 />
                 <input
                   id="passwordLogin"
@@ -161,7 +151,7 @@ export default function Login() {
                   name="password"
                   onChange={(e) => handleChange(e, false)}
                   placeholder="Senha"
-                  title="Senha"
+                  title="Senha - Login"
                 />
                 <button type="submit">Entrar</button>
               </form>
@@ -176,7 +166,7 @@ export default function Login() {
                 name="name"
                 onChange={(e) => handleChange(e, true)}
                 placeholder="Nome"
-                title="Nome"
+                title="Nome - Registro"
               />
               <input
                 id="emailRegister"
@@ -184,7 +174,7 @@ export default function Login() {
                 name="email"
                 onChange={(e) => handleChange(e, true)}
                 placeholder="exemplo@outlook.com"
-                title="exemplo@outlook.com"
+                title="Email - Registro"
               />
               <input
                 id="passwordRegister"
@@ -192,14 +182,14 @@ export default function Login() {
                 name="password"
                 onChange={(e) => handleChange(e, true)}
                 placeholder="Senha"
-                title="Senha"
+                title="Senha - Registro"
               />
               <input
                 id="passwordConfirmation"
                 type="password"
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 placeholder="Cofirmação de senha"
-                title="Cofirmação de senha"
+                title="Cofirmação de senha - Registro"
               />
               <button type="submit">Registrar-se</button>
             </form>

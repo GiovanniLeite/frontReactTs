@@ -10,7 +10,7 @@
     "noFallthroughCasesInSwitch": true, // Here
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false, // true, // Here
+    "strict": true, // Here
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "module": "esnext",

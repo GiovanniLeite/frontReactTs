@@ -40,16 +40,16 @@ const initialState: AuthState = {
 
 // to be used for slice or mockStore
 export const reducersObj = {
-  loginRequest(state, action: PayloadAction<LoginPayload>) {
+  loginRequest(state: AuthState, action: PayloadAction<LoginPayload>) {
     state.isLoading = true;
   },
-  loginSuccess(state, action: PayloadAction<LoginSuccessPayload>) {
+  loginSuccess(state: AuthState, action: PayloadAction<LoginSuccessPayload>) {
     state.isLoggedIn = true;
     state.token = action.payload.token;
     state.user = action.payload.user;
     state.isLoading = false;
   },
-  loginFailure(state) {
+  loginFailure(state: AuthState) {
     delete axios.defaults.headers.Authorization;
     state.isLoggedIn = false;
     state.token = '';
@@ -57,17 +57,17 @@ export const reducersObj = {
     state.isLoading = false;
   },
 
-  registerRequest(state, action: PayloadAction<RegisterPayload>) {
+  registerRequest(state: AuthState, action: PayloadAction<RegisterPayload>) {
     state.isLoading = true;
   },
-  registerCreatedSuccess(state) {
+  registerCreatedSuccess(state: AuthState) {
     state.isLoading = false;
   },
-  registerUpdatedSuccess(state, action: PayloadAction<User>) {
+  registerUpdatedSuccess(state: AuthState, action: PayloadAction<User>) {
     state.user = action.payload;
     state.isLoading = false;
   },
-  registerFailure(state) {
+  registerFailure(state: AuthState) {
     state.isLoading = false;
   },
 };

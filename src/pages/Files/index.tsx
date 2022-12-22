@@ -11,20 +11,20 @@ import MainContainer from '../../components/MainContainer';
 import Loading from '../../components/Loading';
 import { Container } from './styled';
 
+export type FileContact = {
+  id: number;
+  contact_id: number;
+  original_name: string;
+  file_name: string;
+  url: string;
+  created_at: string;
+  updated_at: string;
+};
+
 export default function Files() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [files, setFiles] = useState([
-    {
-      id: 0,
-      contact_id: '',
-      original_name: '',
-      file_name: '',
-      url: '',
-      created_at: '',
-      updated_at: '',
-    },
-  ]);
+  const [files, setFiles] = useState<FileContact[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -107,32 +107,27 @@ export default function Files() {
     <>
       <Helmet>
         <title>Uploads | Agenda</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
-          rel="stylesheet"
-        />
       </Helmet>
       <MainContainer>
         <Loading isLoading={isLoading} />
         <Container>
           <div className="box">
-            <form>
+            <form data-testid="inputFileForm">
               <h4>Adicionar Imagem</h4>
               <label htmlFor="fileOne">
                 Selecionar
-                <input type="file" id="fileOne" onChange={handleAdd} />
+                <input
+                  type="file"
+                  id="fileOne"
+                  onChange={handleAdd}
+                  data-testid="inputFile"
+                />
               </label>
             </form>
 
             <div className="removeFile">
               {files?.map((e, index) => (
-                <div key={e.id}>
+                <div key={e.id} data-testid="fileDiv">
                   <img src={e.url} alt={e.file_name} />
                   <button
                     type="button"

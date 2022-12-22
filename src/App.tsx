@@ -1,3 +1,4 @@
+import '@fontsource/open-sans/300.css';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { HelmetProvider } from 'react-helmet-async';

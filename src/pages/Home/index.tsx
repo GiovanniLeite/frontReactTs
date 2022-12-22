@@ -182,16 +182,6 @@ export default function Home() {
     <>
       <Helmet>
         <title>Home | Agenda</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
-          rel="stylesheet"
-        />
       </Helmet>
       <MainContainer>
         <Loading isLoading={isLoading} />
@@ -199,7 +189,10 @@ export default function Home() {
           <div className="searchBar">
             <div className="inputContent">
               <div>
-                <form onSubmit={(e) => handleSearch(e)}>
+                <form
+                  onSubmit={(e) => handleSearch(e)}
+                  data-testid="searchForm"
+                >
                   <input
                     type="text"
                     onChange={(e) => setSearch(e.target.value)}
@@ -227,7 +220,7 @@ export default function Home() {
               </li>
               {get(items[0], 'id', false) &&
                 items.map((e, index) => (
-                  <li key={e.id}>
+                  <li key={e.id} data-testid="contactList">
                     <span className="center">
                       {get(e, 'Files[0].url', false) ? (
                         <img src={e.Files[0].url} alt={e.name} />
@@ -270,7 +263,7 @@ export default function Home() {
                 ))}
             </ul>
             {numberOfPages > 1 && (
-              <div className="pagination">
+              <div className="pagination" data-testid="pagination">
                 <div>
                   {(currentPage > 1 && (
                     <button
@@ -322,7 +315,7 @@ export default function Home() {
           >
             <h2>Apagar o registro abaixo?</h2>
             <div className="divH2" />
-            <h3>
+            <h3 data-testid="contactInfo">
               <strong>Cod.:</strong> {currentRegister.id}
               <br />
               <strong>Nome:</strong> {currentRegister.name.slice(0, 80)}

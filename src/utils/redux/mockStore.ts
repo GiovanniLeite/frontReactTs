@@ -3,7 +3,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 
 import rootSaga from '../../redux/app/rootSaga';
-import { reducersObj } from '../../redux/features/auth/slice';
+import { AuthState, reducersObj } from '../../redux/features/auth/slice';
 
 export const mockedStateUser = {
   isLoggedIn: true,
@@ -13,6 +13,7 @@ export const mockedStateUser = {
     name: 'Niko Bellic',
     adm: 0,
     email: 'niko.bellic@outlook.com',
+    password_hash: '',
   },
   isLoading: false,
 };
@@ -25,7 +26,7 @@ export const mockedStateNoUser = {
 };
 
 export const sagaMiddleware = createSagaMiddleware();
-export const mockStore = (authState) => {
+export const mockStore = (authState: AuthState) => {
   const store = configureStore({
     reducer: {
       auth: createSlice({

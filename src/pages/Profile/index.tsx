@@ -39,14 +39,14 @@ export default function Profile() {
       formErrors = true;
       toast.error('Nome deve ter entre 3 e 50 caracteres');
       const nameInput = document.getElementById('name') as HTMLInputElement;
-      nameInput.style.borderColor = '#ff0000';
+      nameInput.style.border = '1px solid #ff0000';
     }
 
     if (!val.default.isEmail(email)) {
       formErrors = true;
       toast.error('E-mail inválido.');
       const emailInput = document.getElementById('email') as HTMLInputElement;
-      emailInput.style.borderColor = '#ff0000';
+      emailInput.style.border = '1px solid #ff0000';
     }
 
     const pass = document.getElementById('password') as HTMLInputElement;
@@ -85,16 +85,6 @@ export default function Profile() {
     <>
       <Helmet>
         <title>Perfil | Agenda</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
-          rel="stylesheet"
-        />
       </Helmet>
       <MainContainer>
         <Loading isLoading={isLoading} />
